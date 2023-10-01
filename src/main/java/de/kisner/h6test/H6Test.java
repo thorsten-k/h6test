@@ -29,6 +29,5 @@ public class H6Test
 		H6Test test = new H6Test();
 		test.init();
 		
-
 	}
 }

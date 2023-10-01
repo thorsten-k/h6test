@@ -3,7 +3,7 @@
 
 export PGPASSWORD=docker
 
-psql -U postgres -h localhost -c "SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'rmmv' AND pid <> pg_backend_pid();"
+psql -U postgres -h localhost -c "SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'h6test' AND pid <> pg_backend_pid();"
 psql -U postgres -h localhost -c "SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'template1' AND pid <> pg_backend_pid();"
 
 psql -U postgres -h localhost -c "DROP DATABASE IF EXISTS h6test;"

@@ -40,13 +40,18 @@
 			<scope>provided</scope>
 		</dependency>
 
-		
-
 		<!-- PostgreSQL -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		
+		<!-- JEESL -->
+		<dependency>
+			<groupId>org.jeesl</groupId>
+    		<artifactId>jeesl-interfaces</artifactId>
+    		<scope>compile</scope>
 		</dependency>
 		
 		<!-- Apache Commons -->
@@ -68,6 +73,12 @@
 		    <version>6.1.4.Final</version>
 		</dependency>
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-envers</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>yasson</artifactId>
 			<version>3.0.3</version>
@@ -87,12 +98,35 @@
     <scope>compile</scope>
 </dependency>
 
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.13</version>
+
+    	<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>2.3.3</version>
+			<scope>provided</scope>
+		</dependency> 
+
+				<dependency>
+   			<groupId>org.apache.commons</groupId>
+   			<artifactId>commons-lang3</artifactId>
+   			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-api</artifactId>
+	    <version>2.15.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-core</artifactId>
+	    <version>2.15.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-slf4j-impl</artifactId>
+	    <version>2.15.0</version>
+	</dependency>
    		
 	</dependencies>
 
@@ -136,6 +170,39 @@
      			<directory>${my.build.directory}</directory>
      		</build>
 		</profile>
-		
+		<profile>
+			<id>jeesl</id>
+			<build>
+				<plugins>
+					<plugin>
+					    <artifactId>maven-resources-plugin</artifactId>
+					    <executions>
+					        <execution>
+					            <id>copy-resource-one</id>
+					            <phase>generate-sources</phase>
+					            <goals><goal>copy-resources</goal></goals>
+					            <configuration>
+					                <outputDirectory>${basedir}/src/main/java/org/jeesl/model/ejb</outputDirectory>
+					                <overwrite>true</overwrite>
+					                <resources>
+					                    <resource>
+					                        <directory>../rmmv/entities/src/main/java/org/jeesl/model/ejb</directory>
+					                        <includes>
+					                            <include>io/locale/*.java</include>
+					                            <include>io/graphic/core/*.java</include>
+					                            <include>io/cms/**/*.java</include>
+					                            <include>io/fr/**/*.java</include>
+					                            <include>io/ssi/core/*.java</include>
+					                            <include>system/security/**/*.java</include>
+					                        </includes>
+					                    </resource>   
+					                </resources>
+					            </configuration>
+					        </execution>
+					    </executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 </project>

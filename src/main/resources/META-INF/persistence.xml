@@ -9,13 +9,13 @@
        
 		<properties>
 		   
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:30015/h6test" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:30016/h6test" />
 			<property name="javax.persistence.jdbc.user" value="h6test" />
             <property name="javax.persistence.jdbc.password" value="ksjNRGLOnwegbadfbre" />
 		   
       		<!-- https://thorben-janssen.com/standardized-schema-generation-data-loading-jpa-2-1/ -->
       		<!-- https://jakarta.ee/specifications/persistence/3.0/jakarta-persistence-spec-3.0.html#a12917 -->
-			<property name="jakarta.persistence.schema-generation.database.action" value="none"/>
+			<property name="jakarta.persistence.schema-generation.database.action" value="create"/>
 				
 			<!-- Hibernate SQL Formatting-->
 			<property name="hibernate.show_sql" value="true"/> <!-- Default is 'create' or 'false', set to 'true' for debugging -->
