@@ -46,6 +46,15 @@
 			<artifactId>postgresql</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+		    <groupId>org.flywaydb</groupId>
+		    <artifactId>flyway-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
 		
 		<!-- JEESL -->
 		<dependency>
@@ -77,26 +86,28 @@
 			<artifactId>hibernate-envers</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>yasson</artifactId>
 			<version>3.0.3</version>
 			<scope>compile</scope>
 		</dependency>
-
-<dependency>
-    <groupId>org.hibernate.validator</groupId>
-    <artifactId>hibernate-validator</artifactId>
-    <version>8.0.1.Final</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.glassfish/jakarta.el -->
-<dependency>
-    <groupId>org.glassfish</groupId>
-    <artifactId>jakarta.el</artifactId>
-    <version>4.0.2</version>
-    <scope>compile</scope>
-</dependency>
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>8.0.1.Final</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.glassfish</groupId>
+		    <artifactId>jakarta.el</artifactId>
+		    <version>4.0.2</version>
+		    <scope>compile</scope>
+		</dependency>
+		<dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>4.0.0</version>
+        </dependency>
 
 
     	<dependency>
@@ -194,6 +205,23 @@
 					                            <include>io/fr/**/*.java</include>
 					                            <include>io/ssi/core/*.java</include>
 					                            <include>system/security/**/*.java</include>
+					                        </includes>
+					                    </resource>   
+					                </resources>
+					            </configuration>
+					        </execution>
+					        <execution>
+					            <id>copy-flyway</id>
+					            <phase>generate-sources</phase>
+					            <goals><goal>copy-resources</goal></goals>
+					            <configuration>
+					                <outputDirectory>${basedir}/src/main/resources/test-hibernate</outputDirectory>
+					                <overwrite>true</overwrite>
+					                <resources>
+					                    <resource>
+					                        <directory>../rmmv/entities/src/main/resources/rmmv/</directory>
+					                        <includes>
+					                            <include>system/io/db/flyway/0.1/0.1.4/*.sql</include>
 					                        </includes>
 					                    </resource>   
 					                </resources>
