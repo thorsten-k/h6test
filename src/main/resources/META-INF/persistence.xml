@@ -14,7 +14,10 @@
       		<!-- https://thorben-janssen.com/standardized-schema-generation-data-loading-jpa-2-1/ -->
       		<!-- https://jakarta.ee/specifications/persistence/3.0/jakarta-persistence-spec-3.0.html#a12917 -->
 			<property name="jakarta.persistence.schema-generation.database.action" value="none"/>
-				
+			
+			<!-- Hibernate Fetch Configuration -->
+			<property name="hibernate.max_fetch_depth" value="0" />
+			
 			<!-- Hibernate SQL Formatting-->
 			<property name="hibernate.show_sql" value="true"/> <!-- Default is 'create' or 'false', set to 'true' for debugging -->
 			<property name="hibernate.format_sql" value="false"/> <!-- Default is 'false', set to 'true' for debugging -->

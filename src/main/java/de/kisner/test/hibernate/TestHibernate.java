@@ -1,6 +1,7 @@
 package de.kisner.test.hibernate;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,9 +34,14 @@ public class TestHibernate
 		em = emf.createEntityManager();
 	}
 	
-	public void find()
+	public void find() throws InterruptedException
 	{
-		logger.info(em.find(SecurityMenu.class,1l).toString());
+//		TimeUnit.SECONDS.sleep(2);
+//		logger.info("Finding 1");
+//		logger.info(em.find(SecurityMenu.class,1l).toString());
+		
+		TimeUnit.SECONDS.sleep(2);
+		logger.info("Finding 2");
 		logger.info(em.find(SecurityMenu.class,2l).toString());
 	}
 	
@@ -57,7 +63,7 @@ public class TestHibernate
 		}
 	}
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws InterruptedException
 	{
 		TestHibernate cli = new TestHibernate();
 		cli.init();
