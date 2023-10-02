@@ -1,12 +1,11 @@
-package de.kisner.test.hibernate.v6;
+package de.kisner.test.hibernate;
 
 import java.util.List;
 
-import org.apache.commons.dbcp.BasicDataSource;
-import org.jeesl.model.ejb.system.security.context.SecurityMenu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.kisner.test.hibernate.model.SecurityMenu;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -15,14 +14,14 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-public class H6Test
+public class TestHibernate
 {
-	final static Logger logger = LoggerFactory.getLogger(H6Test.class);
+	final static Logger logger = LoggerFactory.getLogger(TestHibernate.class);
 	
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	
-	public H6Test()
+	public TestHibernate()
 	{
 		
 	}
@@ -30,28 +29,14 @@ public class H6Test
 	public void init()
 	{
 		logger.info("Init");
-		emf = Persistence.createEntityManagerFactory("h6test");
+		emf = Persistence.createEntityManagerFactory("eap");
 		em = emf.createEntityManager();
 	}
 	
-	public void flyway()
+	public void find()
 	{
-		BasicDataSource ds = new BasicDataSource();
-		ds.setDriverClassName("org.postgresql.Driver");
-		ds.setUsername("h6test");
-		ds.setPassword("ksjNRGLOnwegbadfbre");
-
-		StringBuffer sb = new StringBuffer();
-		sb.append("jdbc:postgresql://");
-		sb.append("localhost");
-		sb.append(":30016");
-		sb.append("/").append("h6test");
-//		sb.append("?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory");
-		logger.info("Postgres Connection: "+sb.toString());
-		
-		ds.setUrl(sb.toString());
-		
-		H6Flyway.onStartup(ds);
+		logger.info(em.find(SecurityMenu.class,1l).toString());
+		logger.info(em.find(SecurityMenu.class,2l).toString());
 	}
 	
 	public void list()
@@ -74,9 +59,9 @@ public class H6Test
 	
 	public static void main(String[] args)
 	{
-		H6Test cli = new H6Test();
+		TestHibernate cli = new TestHibernate();
 		cli.init();
-		cli.flyway();
-		cli.list();
+		cli.find();
+//		cli.list();
 	}
 }

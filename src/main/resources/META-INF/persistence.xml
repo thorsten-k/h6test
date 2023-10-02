@@ -1,17 +1,15 @@
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 			version="3.0">
-    <persistence-unit name="h6test">
+    <persistence-unit name="eap">
        
        <description>Datasource for H6 Test</description>
-       
-      
-       
+
 		<properties>
 		   
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:30016/h6test" />
-			<property name="javax.persistence.jdbc.user" value="h6test" />
-            <property name="javax.persistence.jdbc.password" value="ksjNRGLOnwegbadfbre" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:30016/eap" />
+			<property name="javax.persistence.jdbc.user" value="eap" />
+            <property name="javax.persistence.jdbc.password" value="eap" />
 		   
       		<!-- https://thorben-janssen.com/standardized-schema-generation-data-loading-jpa-2-1/ -->
       		<!-- https://jakarta.ee/specifications/persistence/3.0/jakarta-persistence-spec-3.0.html#a12917 -->
